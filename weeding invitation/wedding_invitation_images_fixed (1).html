@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+<meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+
+
+<title>Prajwal &amp; Parul – Wedding Invitation</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+
+
+<style>
+
+
+
+:root{--bg:#fbf4e8;--card:#fffaf2;--ink:#4a2f2a;--muted:#806a60;--red:#9b3d4d;--gold:#c6a15b;--line:#e7d5b8;}
+
+
+
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+
+
+
+body{margin:0;background:radial-gradient(circle at 50% 0%,#fffdf8 0%,var(--bg) 48%,#f7ead9 100%);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;text-align:center;overflow-x:hidden}
+
+
+
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;margin:0;color:var(--red)}
+
+
+
+main{max-width:480px;margin:auto;padding:0 18px}
+
+
+
+section{padding:56px 0}
+
+
+
+.lbl{letter-spacing:.35em;font-size:13px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+
+
+
+p{margin:8px 0;color:var(--muted)}
+
+
+
+.fade{opacity:0;transform:translateY(26px);transition:.9s}.fade.in{opacity:1;transform:none}
+
+
+
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+
+
+
+/* envelope */
+
+
+
+#env{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;
+
+
+
+background:repeating-linear-gradient(45deg,#8e1530 0 6px,#9c1a36 6px 12px);color:#f8e3b8;transition:opacity 1.2s .6s,visibility 0s 1.8s;overflow:hidden}
+
+
+
+#env.open{opacity:0;visibility:hidden}
+
+
+
+#env .flap{position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(#7d1128,#a31c38);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1s}
+
+
+
+#env.open .flap{transform:rotateX(180deg)}
+
+
+
+.seal{position:relative;z-index:3;width:150px;height:150px;border-radius:50%;border:none;cursor:pointer;color:#fff;font:700 20px 'Playfair Display',serif;
+
+
+
+background:radial-gradient(circle,#fff6c9 0,#ffcf5a 25%,#d9382f 60%,#8e1530 100%);box-shadow:0 0 60px 20px rgba(255,200,80,.55);animation:pulse 2s infinite}
+
+
+
+@keyframes pulse{50%{box-shadow:0 0 90px 36px rgba(255,200,80,.8)}}
+
+
+
+#env.open .seal{transform:scale(14);opacity:0;transition:1s;animation:none}
+
+
+
+#env small{margin-top:30px;letter-spacing:.3em;text-transform:uppercase;font-size:13px}
+
+
+
+/* hero */
+
+
+
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+
+
+
+.hero h1{font-size:54px;line-height:1.1}.hero em{display:block;color:var(--gold);font-size:34px;margin:4px 0}
+
+
+
+.arrow{margin-top:30px;color:var(--gold);font-size:13px;letter-spacing:.3em;animation:bob 1.6s infinite}@keyframes bob{50%{transform:translateY(8px)}}
+
+
+
+/* scratch */
+
+
+
+.cards{display:flex;gap:10px;justify-content:center;margin-top:22px}
+
+
+
+.sc{position:relative;width:30%;max-width:120px;height:130px;border-radius:12px;overflow:hidden;border:2px solid var(--gold);background:var(--card)}
+
+
+
+.sc b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 24px 'Playfair Display',serif;color:var(--red)}
+
+
+
+.sc b i{font:normal 11px 'Cormorant Garamond',serif;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
+
+
+
+.sc canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+
+
+
+/* polaroids */
+
+
+
+.stack{position:relative;height:340px;margin:24px auto 0;width:240px}
+
+
+
+.pol{position:absolute;inset:0;background:#fff;padding:12px 12px 44px;box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;transition:.5s}
+
+
+
+.pol div{height:100%;border-radius:2px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:64px}
+
+
+
+.pol span{position:absolute;bottom:10px;left:0;right:0;color:#4a2a2a;font-style:italic}
+
+
+
+/* events */
+
+
+
+.ev{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 18px;margin:16px 0;box-shadow:0 6px 20px rgba(120,40,50,.08)}
+
+
+
+.ev .t{color:var(--gold);letter-spacing:.2em;font-size:14px;text-transform:uppercase}
+
+
+
+.dots i{display:inline-block;width:14px;height:14px;border-radius:50%;margin:0 3px;border:1px solid var(--line)}
+
+
+
+.btn{display:inline-block;margin-top:14px;background:var(--red);color:#fff;border:0;border-radius:30px;padding:12px 28px;font:600 14px 'Cormorant Garamond',serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+
+
+
+/* rsvp */
+
+
+
+input,select,textarea{width:100%;margin:6px 0;padding:13px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+
+
+
+#thanks{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;background:var(--bg)}
+
+
+
+#thanks.show{display:flex}#thanks .ck{width:90px;height:90px;border-radius:50%;background:var(--red);color:#fff;font-size:50px;line-height:90px;margin-bottom:20px}
+
+
+
+#thanks h2{font-size:44px}
+
+
+
+footer{padding:40px 0 60px;color:var(--muted)}
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<canvas id="fx"></canvas>
+
+
+
+
+
+
+
+<div id="env"><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Open wedding invitation">Open<br><span style="font:500 13px Cormorant Garamond,serif;letter-spacing:.12em">TAP HERE</span></button><small>Tap to open your invitation</small></div>
+
+
+
+
+
+
+
+<main>
+
+
+
+  <header class="hero">
+
+
+
+    <div class="lbl fade">Together with their families</div>
+
+
+
+    <h1 class="fade">Prajwal<em>&amp;</em>Parul</h1>
+
+
+
+    <p class="fade">Invite you to celebrate their wedding</p>
+
+
+
+    <div class="arrow">SCROLL TO SEE MAGIC ↓</div>
+
+
+
+  </header>
+
+
+
+
+
+
+
+  <section>
+
+
+
+    <div class="lbl fade">The Date</div>
+
+
+
+    <h2 class="fade">Save the Date</h2>
+
+
+
+    <p class="fade">Scratch below to reveal our wedding date</p>
+
+
+
+    <div class="cards" id="cards"></div>
+
+
+
+    <p id="hint" style="opacity:0;transition:1s;margin-top:20px">✨ A lifetime of togetherness begins with one yes ✨</p>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <section>
+
+
+
+    <div class="lbl fade">Our Story</div>
+
+
+
+    <h2 class="fade">Forever Us</h2>
+
+
+
+    <p class="fade">Tap the photos to flip through our memories</p>
+
+
+
+    <div class="stack" id="stack"></div>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <section>
+
+
+
+    <div class="lbl fade">The Celebrations</div>
+
+
+
+    <h2 class="fade">Join Us</h2>
+
+
+
+    <div id="events"></div>
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+  <footer>With love, Prajwal &amp; Parul<br>#PrajwalwedsParul</footer>
+
+
+
+</main>
+
+
+
+
+
+
+
+<div id="thanks"><div class="ck">✓</div><h2>Thank You!</h2><p>Your response has been received.<br>We can't wait to celebrate with you.</p></div>
+
+
+
+
+
+
+
+<script>
+
+
+
+var $=function(s){return document.querySelector(s)};
+
+
+
+/* effects canvas: petals + confetti */
+
+
+
+var cv=$('#fx'),cx=cv.getContext('2d'),P=[],W,H,petals=false;
+
+
+
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}size();addEventListener('resize',size);
+
+
+
+var cols=['#e06a7e','#f4a6b0','#d9a441','#b3213c','#f7d488'];
+
+
+
+function petal(){return{x:Math.random()*W,y:-20,r:4+Math.random()*6,vy:.6+Math.random()*1.2,vx:(Math.random()-.5)*.8,a:Math.random()*6,va:(Math.random()-.5)*.06,c:cols[Math.random()*5|0],life:1e9}}
+
+
+
+function burst(){for(var i=0;i<140;i++)P.push({x:W/2,y:H/2,r:3+Math.random()*4,vy:(Math.random()-.8)*14,vx:(Math.random()-.5)*16,a:0,va:.2,c:cols[Math.random()*5|0],g:.35,life:120})}
+
+
+
+function loop(){cx.clearRect(0,0,W,H);if(petals&&Math.random()<.12&&P.length<70)P.push(petal());
+
+
+
+P=P.filter(function(p){p.x+=p.vx+Math.sin(p.a)*.5;p.y+=p.vy;p.a+=p.va;if(p.g)p.vy+=p.g;p.life--;return p.y<H+20&&p.life>0});
+
+
+
+P.forEach(function(p){cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.beginPath();cx.ellipse(0,0,p.r,p.r*.55,0,0,7);cx.fill();cx.restore()});requestAnimationFrame(loop)}loop();
+
+
+
+/* envelope */
+
+
+
+$('#seal').onclick=function(){$('#env').classList.add('open');petals=true;burst();setTimeout(reveal,900)};
+
+
+
+/* reveal on scroll */
+
+
+
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.2});
+
+
+
+document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
+
+
+
+function reveal(){document.querySelectorAll('.hero .fade').forEach(function(el){el.classList.add('in')})}
+
+
+
+/* scratch cards */
+
+
+
+var dv=[['Month','December'],['Day','06'],['Year','2027']],done=0;
+
+
+
+dv.forEach(function(v,i){var d=document.createElement('div');d.className='sc';d.innerHTML='<b><i>'+v[0]+'</i>'+v[1]+'</b><canvas></canvas>';$('#cards').appendChild(d);
+
+
+
+var c=d.querySelector('canvas'),x=c.getContext('2d'),w=c.width=240,h=c.height=260,rev=false,dn=false;
+
+
+
+var g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,'#c32a48');g.addColorStop(1,'#8e1530');x.fillStyle=g;x.fillRect(0,0,w,h);
+
+
+
+x.fillStyle='#f8e3b8';x.font='28px serif';x.textAlign='center';x.fillText('✦',w/2,h/2+8);x.font='22px serif';x.fillText('SCRATCH',w/2,h/2+50);
+
+
+
+function sc(e){var r=c.getBoundingClientRect(),t=e.touches?e.touches[0]:e;x.globalCompositeOperation='destination-out';x.beginPath();x.arc((t.clientX-r.left)*w/r.width,(t.clientY-r.top)*h/r.height,26,0,7);x.fill();
+
+
+
+if(!rev&&Math.random()<.25){var dat=x.getImageData(0,0,w,h).data,n=0;for(var k=3;k<dat.length;k+=160)if(dat[k]<20)n++;if(n/(dat.length/160)>.45){rev=true;c.style.transition='.6s';c.style.opacity=0;if(++done==3){burst();$('#hint').style.opacity=1}}}}
+
+
+
+c.addEventListener('pointerdown',function(e){dn=true;c.setPointerCapture(e.pointerId);sc(e)});c.addEventListener('pointermove',function(e){if(dn)sc(e)});c.addEventListener('pointerup',function(){dn=false})});
+
+
+
+/* polaroids */
+
+
+
+var ph=[
+  ['images/Forever.JPG','Forever Us'],
+  ['images/Forever.JPG','The Proposal'],
+  ['images/first trip.JPG','Our First Trip']
+];
+
+
+
+var st=$('#stack');ph.forEach(function(p,i){
+  var e=document.createElement('div');
+  e.className='pol';
+  e.innerHTML='<div><img src="'+p[0]+'" alt="'+p[1]+'" style="width:100%;height:100%;object-fit:cover;display:block"></div><span>'+p[1]+'</span>';
+  st.appendChild(e);
+});
+
+
+
+function lay(){[].forEach.call(st.children,function(e,i){var n=st.children.length-1-i;e.style.zIndex=i;e.style.transform='rotate('+((n%2?1:-1)*n*4)+'deg) translateY('+(-n*6)+'px)'})}lay();
+
+
+
+st.onclick=function(){var t=st.lastElementChild;t.style.transform='translateX(130%) rotate(20deg)';setTimeout(function(){st.insertBefore(t,st.firstChild);lay()},450)};
+
+
+
+/* events */
+
+
+
+var evs=[
+
+  ['Mehndi','Friday · 04 Dec 2026 · 5:00 PM','"Henna, music and endless celebration"',['#2e7d32','#c8a15a','#f3e2c2'],'Traditional Indian · Green & Gold','Sukhija Confectionery','https://www.google.com/maps/place/Sukhija+Confectionery/@29.2871153,77.9476162,20.44z/data=!4m14!1m7!3m6!1s0x390bf5759e6cf60f:0xda4ae11b283facb8!2sShri+Ram+Mandir!8m2!3d29.2864182!4d77.9479531!16s%2Fg%2F11b5w81w01!3m5!1s0x390bf5001676cb35:0x37f106ec59248cad!8m2!3d29.287223!4d77.947592!16s%2Fg%2F11lf3lznw8?hl=en&entry=ttu'],
+
+  ['Sangeet','Saturday · 05 Dec 2026 · :800 PM','"An evening of songs, dance and fun"',['#1a237e','#c8a15a','#f6e6d3'],'Navy · Gold · Cocktail Formal','Sukhija Confectionery','https://www.google.com/maps/place/Sukhija+Confectionery/@29.2871153,77.9476162,20.44z/data=!4m14!1m7!3m6!1s0x390bf5759e6cf60f:0xda4ae11b283facb8!2sShri+Ram+Mandir!8m2!3d29.2864182!4d77.9479531!16s%2Fg%2F11b5w81w01!3m5!1s0x390bf5001676cb35:0x37f106ec59248cad!8m2!3d29.287223!4d77.947592!16s%2Fg%2F11lf3lznw8?hl=en&entry=ttu'],
+
+  ['Phere','Sunday · 06 Dec 2026 · 7:00 PM','"Family, love and blessings"',['#a83b55','#c8a15a','#f3e2c2'],'Red · Gold · Traditional Indian','Hi-Way Grand, Moradabad','https://www.google.com/maps/place/Hi-Way+Grand/@28.8226851,78.6834824,17z/data=!3m1!4b1!4m6!3m5!1s0x390afdb8c1b390cb:0x5bab212a508c2176!8m2!3d28.8226851!4d78.6860573!16s%2Fg%2F11f3vqs42p?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D']
+
+];
+
+
+
+$('#events').innerHTML=evs.map(function(e){return '<div class="ev fade"><h3>'+e[0]+'</h3><div class="t" style="margin:6px 0">'+e[1]+'</div><p><em>'+e[2]+'</em></p><div class="lbl" style="margin:12px 0 6px">Dress Code</div><div class="dots">'+e[3].map(function(c){return '<i style="background:'+c+'"></i>'}).join('')+'</div><p>'+e[4]+'</p><p>'+e[5]+'</p><a class="btn" target="_blank" rel="noopener" href="'+e[6]+'">Get Directions</a></div>'}).join('');
+
+
+
+document.querySelectorAll('.ev').forEach(function(el){io.observe(el)});
+
+
+
+/* rsvp */
+
+
+
+// function rsvp(){if(!$('#n').value.trim()){$('#n').focus();return}$('#thanks').classList.add('show');burst();setTimeout(burst,500)}
+
+
+
+</script>
+
+
+
+</body>
+
+
+
+</html>
